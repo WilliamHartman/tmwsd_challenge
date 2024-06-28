@@ -8,15 +8,18 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const port = 8080;
 
-
 //middleware
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(__dirname + './../build'));
  
- 
-//Connection to postgresql DB
+/* Connection to postgresql DB
+*
+*NOTE: I would never typically leave the connection string in the code like this, I would hide it in a .env.
+*Same with the axios URLs on the front end. However I will leave them like this to make it easier for other people to run the app themselves.
+*Nothing else is stored on this postgresql server
+*/
 massive({
     connectionString: 'postgresql://clarapricechallenge_owner:eVnIGhmM2cv8@ep-snowy-mud-a6j7b06a.us-west-2.aws.neon.tech/clarapricechallenge?sslmode=require',
     ssl: {
