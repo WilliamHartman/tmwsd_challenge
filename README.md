@@ -36,5 +36,7 @@ Send an email with a link to your fork when finished. Thanks!
 # How to Run
 ``` bash
 npm install
+npm run build
 node server
 ```
+Then navigate to http://localhost:8080/

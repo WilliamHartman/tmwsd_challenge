@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
 
-// require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const port = 8080;
 
@@ -13,7 +13,7 @@ const port = 8080;
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-// app.use(express.static(__dirname + './../build'));
+app.use(express.static(__dirname + './../build'));
  
  
 //Connection to postgresql DB
