@@ -10,11 +10,12 @@ import MailIcon from '@mui/icons-material/Mail';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
+//Creates the list of existing messages
 function messageGrid(messages, navigate){
-  
   let jsxMessages = messages.map((message) => {
     return(
       <ListItem onClick={() => {
+        //On click navigates to a unique URL based on the message ID using react-router-dom routing
         navigate(`/message/${message.message_id}`)
       }}>
         <ListItemIcon>
@@ -61,6 +62,7 @@ export default function Home(props) {
         <Button 
           variant="contained" 
           onClick={()=>{
+            //Adds the message to the database and updates messages displayed in the app, resets title and message input fields
             axios.post(`http://localhost:8080/api/createMessage`, {title: newTitle, body: newMessage}).then(result => {
               setMessages(result.data)
               setNewTitle('')

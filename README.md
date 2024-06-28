@@ -34,3 +34,7 @@ Send an email with a link to your fork when finished. Thanks!
 
 
 # How to Run
+``` bash
+npm install
+node server
+```

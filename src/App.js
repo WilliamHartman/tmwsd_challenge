@@ -12,6 +12,7 @@ import {
 function App() {  
   const [messages, setMessages] = useState([])
   
+  //Gets existing messages on app load
   useEffect(() => {
     axios.get(`http://localhost:8080/api/getMessages`)
       .then(result => {
@@ -19,13 +20,16 @@ function App() {
       })
   }, [])
 
+  //Contains the router so we can navigate to and from individual messages at unique URLs
   return (
-    <Router>
-      <Routes>
-        <Route path="" element={<Home messages={messages} setMessages={setMessages}/>}/>
-        <Route path="/message/:messageId" element={<Message messages={messages} setMessages={setMessages}/>}/>
-      </Routes>
-    </Router>
+    <div className='App'>
+      <Router>
+        <Routes>
+          <Route path="" element={<Home messages={messages} setMessages={setMessages}/>}/>
+          <Route path="/message/:messageId" element={<Message messages={messages} setMessages={setMessages}/>}/>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

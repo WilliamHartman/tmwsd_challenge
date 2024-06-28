@@ -25,6 +25,7 @@ export default function Message(props) {
     const [selectedMessage, setSelectedMessage] = useState({})
     const navigate = useNavigate()
 
+    //Sets the selected message info to a hook in the component, deletes it from the database and updates messages within the app
     useEffect(() => {
         setSelectedMessage(messages.filter((message) => message.message_id == messageId)[0])
         axios.delete(`http://localhost:8080/api/deleteMessage/${messageId}`)
@@ -35,7 +36,8 @@ export default function Message(props) {
                     })
             })
     }, [])
-//setMessages(messages.filter((message) => message.message_id !== messageId)
+
+    //Uses MUI modal to make the message look nice and be easily closed
    return (
     <div className="Message">
         <Modal
