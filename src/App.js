@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import axios from 'axios';
+import Home from './Components/Home/Home.js'
+import Message from './Components/Message/Message.js'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
 
-function App() {
+function App() {  
+  const [messages, setMessages] = useState([])
+  
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/getMessages`)
+      .then(result => {
+        setMessages(result.data);
+      })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="" element={<Home messages={messages} setMessages={setMessages}/>}/>
+        <Route path="/message/:messageId" element={<Message messages={messages} setMessages={setMessages}/>}/>
+      </Routes>
+    </Router>
   );
 }
 
